@@ -14,4 +14,5 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   verbose: true,
+  forceExit: true,
 };

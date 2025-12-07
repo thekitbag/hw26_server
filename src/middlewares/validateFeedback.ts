@@ -17,6 +17,7 @@ export const validateFeedback = [
 
   body('comment')
     .optional()
+    .trim()
     .isString()
     .withMessage('comment must be a string')
     .isLength({ max: 500 })
