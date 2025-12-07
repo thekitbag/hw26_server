@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 interface ErrorWithStatus extends Error {
   status?: number;
   statusCode?: number;
+  errors?: unknown[];
 }
 
 export const errorHandler = (
@@ -21,6 +22,7 @@ export const errorHandler = (
     error: {
       message,
       status,
+      ...(err.errors && { errors: err.errors }),
       ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
     },
   });
