@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: hw26-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    autoDeploy: false
+
+databases:
+  - name: hw26-db
+    plan: free
+    databaseName: harkwise
+    user: harkwise_user
+
+version: "1"
