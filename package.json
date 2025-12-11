@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/server.ts",
     "build": "tsc && tsc-alias",
-    "start": "node dist/server.js",
+    "migrate": "ts-node -r tsconfig-paths/register src/scripts/migrate.ts",
+    "start": "node dist/scripts/migrate.js && node dist/server.js",
     "test": "jest",
     "test:unit": "jest --testPathIgnorePatterns=integration",
     "test:integration": "jest integration",
