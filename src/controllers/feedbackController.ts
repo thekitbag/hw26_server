@@ -13,7 +13,11 @@ export const createFeedback = async (
     const { locationId, rating, comment, submittedAt } = req.body;
 
     // Capture IP address and User-Agent for anti-abuse
-    const ipAddress = (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress;
+    // x-forwarded-for can contain multiple IPs (client, proxy1, proxy2...), take the first one
+    const forwardedFor = req.headers['x-forwarded-for'] as string;
+    const ipAddress = forwardedFor
+      ? forwardedFor.split(',')[0].trim()
+      : req.socket.remoteAddress;
     const userAgent = req.headers['user-agent'];
 
     const feedbackInput: FeedbackInput = {
